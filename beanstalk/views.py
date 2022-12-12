@@ -5,6 +5,8 @@ from django.http import HttpResponse, JsonResponse
 import os
 import requests
 
+from cloudProject import settings
+
 
 def index(request):
     #return HttpResponse("Hello, world. You're at the polls index.")
@@ -17,8 +19,7 @@ def create_app(request):
     platform_version = request.POST.get('platform_version', None)
     code = request.POST.get('code', None)
 
-    #DIGITALOCEAN_TOKEN = os.getenv('DIGITALOCEAN_TOKEN')
-    DIGITALOCEAN_TOKEN = 'dop_v1_d9d78fb794940a48b79229e66c2b457abd65dcccfb04bebdc0234827a51eaed7'
+    DIGITALOCEAN_TOKEN = settings.DIGITALOCEAN_TOKEN
 
     headers = {
         'Content-Type': 'application/json',
@@ -46,7 +47,7 @@ def create_app(request):
     }
 
     response = requests.post('https://api.digitalocean.com/v2/droplets', headers=headers, json=json_data)
-    #return HttpResponse(str(response.text))
+    # return HttpResponse(str(response.text))
 
     if 'droplet' in response.json():
         return JsonResponse({'success': True, 'data': response.json()})
