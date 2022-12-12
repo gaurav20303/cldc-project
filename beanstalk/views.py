@@ -18,7 +18,7 @@ def create_app(request):
     code = request.POST.get('code', None)
 
     #DIGITALOCEAN_TOKEN = os.getenv('DIGITALOCEAN_TOKEN')
-    DIGITALOCEAN_TOKEN = 'dop_v1_5d285ab4a19e5010f42d9b95e2dfea6824eea37453bf991bb11f7421eadd3964'
+    DIGITALOCEAN_TOKEN = 'dop_v1_d9d78fb794940a48b79229e66c2b457abd65dcccfb04bebdc0234827a51eaed7'
 
     headers = {
         'Content-Type': 'application/json',
