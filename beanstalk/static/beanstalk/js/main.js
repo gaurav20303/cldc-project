@@ -4,41 +4,49 @@ $(function() {
 
 	// Form
 
-	var contactForm = function() {
+	var createAppForm = function() {
 
 		if ($('#contactForm').length > 0 ) {
 			$( "#contactForm" ).validate( {
 				rules: {
 					name: "required",
-					email: {
+					platform: {
 						required: true,
-						email: true
 					},
-					message: {
+					platform_branch: {
+						required: true,
+					},
+					platform_version: {
+						required: true,
+					},
+					code: {
 						required: true,
 						minlength: 5
 					}
 				},
 				messages: {
-					name: "Please enter your name",
-					email: "Please enter a valid email address",
-					message: "Please enter a message"
+					name: "Please enter the application name",
+					platform: "Please select a platform",
+					platform_branch: "Please select platform branch",
+					platform_version: "Please select platform version",
+					code: "Please enter the code repo link"
 				},
 				/* submit via ajax */
 				submitHandler: function(form) {		
 					var $submit = $('.submitting'),
-						waitText = 'Submitting...';
+						waitText = 'Creating...';
 
 					$.ajax({   	
 				      type: "POST",
-				      url: "php/send-email.php",
+				      url: "{% url 'create_app' %}",
 				      data: $(form).serialize(),
 
 				      beforeSend: function() { 
 				      	$submit.css('display', 'block').text(waitText);
 				      },
 				      success: function(msg) {
-		               if (msg == 'OK') {
+						  console.log(msg)
+		               if (msg.success) {
 		               	$('#form-message-warning').hide();
 				            setTimeout(function(){
 		               		$('#contactForm').fadeOut();
@@ -64,6 +72,6 @@ $(function() {
 			} );
 		}
 	};
-	contactForm();
+	createAppForm();
 
 });
