@@ -49,9 +49,25 @@ def create_app(request):
         ],
         'user_data': '#!/bin/bash\n'
                      'cd ~\n'
-                     'wget https://cloud-sample-2.s3.ap-south-1.amazonaws.com/deploy.sh\n'
-                     'chmod u+x deploy.sh\n'
-                     'source deploy.sh\n',
+                     'sudo apt-get update\n'
+                     'sudo apt-get install python3-pip apache2 libapache2-mod-wsgi-py3 -y\n'
+                     'sudo pip3 install virtualenv\n'
+                     'mkdir django\n'
+                     'cd django\n'
+                     'virtualenv myprojectenv\n'
+                     'git clone ' + code + '\n'
+                     'source myprojectenv/bin/activate\n'
+                     'cd cldc-project\n'                      
+                     'echo "STATIC_ROOT = os.path.join(BASE_DIR, \'static/\')" >> cloudProject/settings.py\n' 
+                     'echo "ALLOWED_HOSTS=[\'*\']" >> cloudProject/settings.py\n'    
+                     'echo "DIGITALOCEAN_TOKEN=\'dop_v1_1e4fa9c34915414581b26d6fd3749fca938aea7f94e28aca7b3d63d39ee47d0\'" >> cloudProject/settings.py\n'   
+                     'pip install -r requirements.txt\n'  
+                     'python3 manage.py collectstatic\n'    
+                     'python3 manage.py runserver 0.0.0.0:8000\n',
+
+                     #'wget https://cloud-sample-2.s3.ap-south-1.amazonaws.com/deploy.sh\n'
+                     #'chmod u+x deploy.sh\n'
+                     #'source deploy.sh\n',
 
         'vpc_uuid': '20cbdb95-0536-48ed-93d6-6de4ee1da7ed',
     }
@@ -99,6 +115,10 @@ def create_app(request):
     # Close SSH connection
     ssh.close()
     """
+
+
+    # create a load balancer
+
 
     if 'droplets' in response.json():
         return JsonResponse({'success': True, 'data': response.json()})
