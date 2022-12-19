@@ -198,7 +198,7 @@
                                         $('#contactForm').fadeOut();
                                     }, 1000);
                                     setTimeout(function () {
-                                        $('#form-message-success').text(`Your app has been deployed to <a href="${msg.data}">${msg.data}</a>`)
+                                        $('#form-message-success').html(`Your app has been deployed to <a href="${msg.data}">${msg.data}</a>`)
                                         $('#form-message-success').fadeIn();
                                     }, 1400);
 
