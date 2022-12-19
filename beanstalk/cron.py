@@ -81,14 +81,13 @@ def add_droplet(load_balancer, code):
                      'cd django\n'
                      'virtualenv myprojectenv\n'
                      'git clone ' + code + '\n'
-                                           'source myprojectenv/bin/activate\n'
-                                           'cd cldc-project\n'
-                                           'echo "STATIC_ROOT = os.path.join(BASE_DIR, \'static/\')" >> cloudProject/settings.py\n'
-                                           'echo "ALLOWED_HOSTS=[\'*\']" >> cloudProject/settings.py\n'
-                                           'echo "DIGITALOCEAN_TOKEN=\'dop_v1_1e4fa9c34915414581b26d6fd3749fca938aea7f94e28aca7b3d63d39ee47d0\'" >> cloudProject/settings.py\n'
-                                           'pip install -r requirements.txt\n'
-                                           'python3 manage.py collectstatic\n'
-                                           'python3 manage.py runserver 0.0.0.0:8000\n',
+                     'source myprojectenv/bin/activate\n'
+                     'cd cldc-project\n'
+                     'echo "STATIC_ROOT = os.path.join(BASE_DIR, \'static/\')" >> cloudProject/settings.py\n'
+                     'echo "DIGITALOCEAN_TOKEN=\'dop_v1_1e4fa9c34915414581b26d6fd3749fca938aea7f94e28aca7b3d63d39ee47d0\'" >> cloudProject/settings.py\n'
+                     'pip install -r requirements.txt\n'
+                     'python3 manage.py collectstatic\n'
+                     'python3 manage.py runserver 0.0.0.0:8000\n',
 
         # 'wget https://cloud-sample-2.s3.ap-south-1.amazonaws.com/deploy.sh\n'
         # 'chmod u+x deploy.sh\n'

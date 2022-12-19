@@ -63,7 +63,6 @@ def create_app(request):
                      'source myprojectenv/bin/activate\n'
                      'cd cldc-project\n'
                      'echo "STATIC_ROOT = os.path.join(BASE_DIR, \'static/\')" >> cloudProject/settings.py\n'
-                     'echo "ALLOWED_HOSTS=[\'*\']" >> cloudProject/settings.py\n'
                      'echo "DIGITALOCEAN_TOKEN=\'dop_v1_1e4fa9c34915414581b26d6fd3749fca938aea7f94e28aca7b3d63d39ee47d0\'" >> cloudProject/settings.py\n'
                      'pip install -r requirements.txt\n'
                      'python3 manage.py collectstatic\n'
