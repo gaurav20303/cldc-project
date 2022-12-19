@@ -125,8 +125,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CRONJOBS = [
-    ('*/5 * * * *', 'beanstalk.cron.scale_up'),
-    # ('*/5 * * * *', 'beanstalk.cron.scale_down'),
-    ('*/5 * * * *', 'beanstalk.cron.failover'),
-]
+CRONJOBS = [('*/5 * * * *', 'beanstalk.cron.scale_up'),('*/5 * * * *', 'beanstalk.cron.failover')]
+
