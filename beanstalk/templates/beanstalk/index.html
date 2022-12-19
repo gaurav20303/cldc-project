@@ -48,19 +48,37 @@
                                 </select>
                             </div>
                             <div class="col-md-4 form-group mb-5">
-                                <label for="" class="col-form-label">Platform branch</label>
+                                <label for="" class="col-form-label">Platform branch *</label>
                                 <select class="form-control" name="platform_branch" id="platform_branch">
                                     <option value=""></option>
                                     <option value="3.8">Python 3.8 running on 64bit Ubuntu 20.04</option>
                                 </select>
                             </div>
                             <div class="col-md-4 form-group mb-5">
-                                <label for="" class="col-form-label">Platform version</label>
+                                <label for="" class="col-form-label">Platform version *</label>
                                 <select class="form-control" name="platform_version" id="platform_version">
                                     <option value=""></option>
                                     <option value="3.4.2">3.4.2 (Recommended)</option>
                                 </select>
                             </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 form-group mb-5">
+                                <label for="" class="col-form-label">Instance root volume size *</label>
+                                <select class="form-control" name="size" id="size">
+                                    <option value=""></option>
+                                    <option value="s-1vcpu-1gb">1 GB</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group mb-5">
+                                <label for="" class="col-form-label">Instance image *</label>
+                                <select class="form-control" name="image" id="image">
+                                    <option value=""></option>
+                                    <option value="ubuntu-20-04-x64">Ubuntu 20.04</option>
+                                </select>
+                            </div>
+
                         </div>
 
                         <div class="row">
@@ -149,6 +167,8 @@
                         platform: "Please select a platform",
                         platform_branch: "Please select platform branch",
                         platform_version: "Please select platform version",
+                        size: "Please select instance root volume size",
+                        image: "Please select instance image",
                         code: "Please enter the code repo link"
                     },
                     /* submit via ajax */
@@ -172,7 +192,7 @@
                                         $('#contactForm').fadeOut();
                                     }, 1000);
                                     setTimeout(function () {
-                                        $('#form-message-success').text('Your app has been deployed!')
+                                        $('#form-message-success').text(`Your app has been deployed to <a href="${msg.data}">${msg.data}</a>`)
                                         $('#form-message-success').fadeIn();
                                     }, 1400);
 

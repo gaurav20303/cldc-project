@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-h*=go(4t(yrbi2+bvu$gtlj98_o*f3qm)xfl(o#vrk^ht-2z0p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'beanstalk'
+    'beanstalk',
+    'django_crontab'
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRONJOBS = [
+    ('*/5 * * * *', 'beanstalk.cron.scale_up'),
+    # ('*/5 * * * *', 'beanstalk.cron.scale_down'),
+    ('*/5 * * * *', 'beanstalk.cron.failover'),
+]
